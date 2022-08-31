@@ -9,13 +9,15 @@ passport.use(new GoogleStrategy(
 {
     clientID: keys.googleClientID,
     ClientSecret: keys.googleClientSecret,
-    callbackURL: 'auth/google/callback'
+    callbackURL: '/auth/google/callback',
 },
     (accessToken) => {
     console.log(accessToken);
 }));
 
-app.get('/auth/google', passport.authenticate('google', {
+app.get(
+    '/auth/google',
+    passport.authenticate('google', {
     scope: ['profile', 'email']
 }));
 
